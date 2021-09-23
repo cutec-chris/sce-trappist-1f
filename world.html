@@ -11,9 +11,9 @@
     <script>const global = window;</script>
     <script src="/server/server/client.mjs" type="module"></script>
 
-    <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
-    <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras/dist/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/aframe-teleport-controls@0.3.x/dist/aframe-teleport-controls.min.js"></script>
     <a-scene>
       <a-assets>
@@ -23,6 +23,9 @@
       <a-entity id="blockHand" hand-controls="hand: right" laser-controls intersection-spawn="event: click; mixin: voxel"></a-entity>
       <a-entity id="player" kinematic-body movement-controls="controls: checkpoint, gamepad, trackpad, keyboard, touch;" position="0 0 0">
         <a-entity camera raycaster position="0 1.6 0" look-controls="pointerLockEnabled: true;">
+          <a-sphere id="gui" position="0 0 0" radius="-0.5" color="#ffffff" opacity="0">
+            <a-entity id="connectionlost" display="none" position="0.0 0 -0.5" text="align: center; width: .8; value: connection lost...;" opacity=".5" animation="property: components.text.material.uniforms.opacity.value; to: 0; dir: alternate; loop: true"></a-entity>
+          </a-sphere>
           <a-cursor id="a-cursor" 
                     position="0 0 -1"
                     geometry="primitive: sphere; radius: 0.0"
@@ -30,7 +33,7 @@
                     intersection-spawn="event: click; mixin: voxel"></a-cursor>
         </a-entity>
       </a-entity>
-      <a-entity environment="preset: starry; grid: 1x1""></a-entity>
+      <a-entity environment="preset: starry; grid: 1x1"></a-entity>
     </a-scene>
     <noscript>
       <div class="alert">
