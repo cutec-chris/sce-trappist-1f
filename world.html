@@ -21,9 +21,10 @@
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras/dist/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/aframe-teleport-controls@0.3.x/dist/aframe-teleport-controls.min.js"></script>
     <a-scene id="scene">
-      <a-assets>
-      </a-assets>      
-      <a-sky></a-sky>
+      <a-assets id="assets">
+      </a-assets>
+      <div id="tiles">
+      </div>
       <a-entity id="teleHand" hand-controls="hand: left" teleport-controls="type: parabolic; collisionEntities: [mixin='voxel'], #ground"></a-entity>
       <a-entity id="blockHand" hand-controls="hand: right" laser-controls intersection-spawn="event: click; mixin: voxel"></a-entity>
       <a-entity id="player" kinematic-body movement-controls="controls: checkpoint, gamepad, trackpad, keyboard, touch;" position="0 0 0">
