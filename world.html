@@ -17,9 +17,10 @@
     <script src="/server/server/client.mjs" type="module"></script>
 
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.2.0/dist/aframe-environment-component.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras/dist/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/aframe-teleport-controls@0.3.x/dist/aframe-teleport-controls.min.js"></script>
+    <script src="ocean-plane.js"></script>
     <a-scene id="scene">
       <a-assets id="assets">
       </a-assets>
@@ -39,7 +40,8 @@
                     intersection-spawn="event: click; mixin: voxel"></a-cursor>
         </a-entity>
       </a-entity>
-      <a-entity environment="preset: starry"></a-entity>
+      <a-entity environment="preset: yavapai;grid: none;fog: 0.97;"></a-entity>
+      <a-ocean-plane position="0 10 0"></a-ocean-plane>
     </a-scene>
     <noscript>
       <div class="alert">
