@@ -9,23 +9,24 @@
   <body>
     <link rel="stylesheet" href="/server/server/client.css">
     <script>const global = window;</script>
-    <div id="nologin"> 
+    <div id="nologin" style="visibility: hidden;">  
       <div class="centeredtext">
         loading...
       </div>
     </div>
     <script src="/server/server/client.mjs" type="module"></script>
-
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-environment-component@1.2.0/dist/aframe-environment-component.min.js"></script>
-    <script src="ocean-plane.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras/dist/aframe-extras.min.js"></script>
+    <script src="https://raw.githubusercontent.com/Dante83/a-water/master/dist/a-water.master.min.js"></script>
+    <!--<script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras/dist/aframe-extras.min.js"></script>-->
     <script src="https://unpkg.com/aframe-teleport-controls@0.3.x/dist/aframe-teleport-controls.min.js"></script>
+    <script src="ocean-plane.js"></script>
     <a-scene id="scene">
       <a-assets id="assets">
       </a-assets>
       <div id="tiles">
       </div>
+      <sce-ocean position="0 8 0" rotation="90 0 0" opacity="0.6" density="300" width="300" depth="300"></sce-ocean>
       <a-entity id="teleHand" hand-controls="hand: left" teleport-controls="type: parabolic; collisionEntities: [mixin='voxel'], #ground"></a-entity>
       <a-entity id="blockHand" hand-controls="hand: right" laser-controls intersection-spawn="event: click; mixin: voxel"></a-entity>
       <a-entity id="player" kinematic-body movement-controls="controls: checkpoint, gamepad, trackpad, keyboard, touch;" position="0 0 0">
@@ -40,17 +41,7 @@
                     intersection-spawn="event: click; mixin: voxel"></a-cursor>
         </a-entity>
       </a-entity>
-      <a-entity environment="preset: yavapai;grid: none;fog: 0.9;skyType: color;skyColor: #1da2d8;groundColor: #064273;groundColor2: #0642a3;dressingColor: #064273"></a-entity>
-      <sce-ocean 
-      width="50" 
-      depth="50" 
-      density="10"  
-      color="#d9d0ae"  
-      position="0 0 0" 
-      opacity="1"
-      speed="0.1"
-      speedVariance="0.2">
-      </sce-ocean>
+      <a-entity environment="preset: yavapai;grid: none;fog: 0.7;skyType: color;skyColor: #1da2d8;groundColor: #064273;groundColor2: #0642a3;dressingColor: #064273"></a-entity>
     </a-scene>
     <noscript>
       <div class="alert">
