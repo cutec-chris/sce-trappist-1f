@@ -20,13 +20,13 @@
     <script src="https://raw.githubusercontent.com/Dante83/a-water/master/dist/a-water.master.min.js"></script>
     <!--<script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras/dist/aframe-extras.min.js"></script>-->
     <script src="https://unpkg.com/aframe-teleport-controls@0.3.x/dist/aframe-teleport-controls.min.js"></script>
-    <script src="ocean-plane.js"></script>
     <a-scene id="scene">
       <a-assets id="assets">
+        <img id="water-map" src="water.jpg"/>
       </a-assets>
       <div id="tiles">
       </div>
-      <sce-ocean position="0 8 0" rotation="90 0 0" opacity="0.6" density="300" width="300" depth="300"></sce-ocean>
+      <a-plane src="#water-map" color="#064273" position="0 8 0" rotation="90 0 0" height="500" width="500" opacity="0.4" repeat="100 100"></a-plane> 
       <a-entity id="teleHand" hand-controls="hand: left" teleport-controls="type: parabolic; collisionEntities: [mixin='voxel'], #ground"></a-entity>
       <a-entity id="blockHand" hand-controls="hand: right" laser-controls intersection-spawn="event: click; mixin: voxel"></a-entity>
       <a-entity id="player" kinematic-body movement-controls="controls: checkpoint, gamepad, trackpad, keyboard, touch;" position="0 0 0">
@@ -41,7 +41,7 @@
                     intersection-spawn="event: click; mixin: voxel"></a-cursor>
         </a-entity>
       </a-entity>
-      <a-entity environment="preset: yavapai;grid: none;fog: 0.7;skyType: color;skyColor: #1da2d8;groundColor: #064273;groundColor2: #0642a3;dressingColor: #064273"></a-entity>
+      <a-entity environment="preset: yavapai;grid: none;fog: 0.9;skyType: color;skyColor: #1da2d8;groundColor: #064273;groundColor2: #0642a3;dressingColor: #064273"></a-entity>
     </a-scene>
     <noscript>
       <div class="alert">
