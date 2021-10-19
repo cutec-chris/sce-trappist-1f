@@ -131,3 +131,4 @@ dmypy.json
 *.obj
 *.mtl
 *.blend1
+*.glb

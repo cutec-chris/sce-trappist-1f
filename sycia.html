@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>A-Frame Solar System Lab</title>
+        <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+        <script src="https://unpkg.com/aframe-orbit-controls@1.3.0/dist/aframe-orbit-controls.min.js"></script>
+        <script src="https://cdn.rawgit.com/matthewbryancurtis/aframe-star-system-component/db4f1030/index.js"></script>
+    </head>
+    <body>
+        <a-scene stats>
+            <a-assets>
+                <a-asset-item id="sycia_asset" src="space/sycia_body_10.glb"></a-asset-item>                
+                <a-asset-item id="singlepanel_asset" src="space/sycia_panel_10.glb"></a-asset-item>                
+            </a-assets>
+            
+            <a-entity camera look-controls orbit-controls="initialPosition: 20 10 20"></a-entity>
+            <a-entity light="type: ambient; intensity: .5"></a-entity>
+            <a-light type="point" intensity=".2" position="60 80 80"></a-light>
+
+            <a-sky color="#222222"></a-sky>
+            <a-entity star-system="count: 1000;"></a-entity>
+
+            <a-entity id="sycia" scale="0.01 0.01 0.01">
+                <a-entity gltf-model="#sycia_asset"></a-entity>
+            </a-entity>
+            <script>
+                Sycia = document.getElementById('sycia');
+                actRotation = 0;
+                PanelCount = 1;
+                rowPos = 1;
+                rotValue = 0.5;
+                rotDist = (60.356*Math.tan(THREE.Math.degToRad(rotValue)))*5;
+                for (row=1;row<13;row++) {
+                    var rowElem = document.createElement("a-entity");
+                    rowElem.setAttribute('rotation', {x: 0, y: 0, z: actRotation});
+                    Sycia.appendChild(rowElem);
+                    for (rot=0;rot<8;rot++) {
+                        var rotElem = document.createElement("a-entity");
+                        rotElem.setAttribute('rotation', {x: 0, y: 0, z: actRotation});
+                        rowElem.appendChild(rotElem);
+                        PanelPos = 0;
+                        for (panel=0;panel<PanelCount;panel++) {
+                            actPanel = document.createElement("a-entity");
+                            actPanel.setAttribute("gltf-model","#singlepanel_asset");
+                            if (row % 2 == 0) {
+                                actPanel.setAttribute('position', {x: 122.3+((rowPos-1)*60.356), 
+                                                                   y: (-(((rowPos-1)*50)/2)+(50*panel)), 
+                                                                   z: -(rotDist*rowPos)});
+                                actPanel.setAttribute('rotation', {x: 0, y: rotValue*rowPos, z: 180});
+                            } else {
+                                actPanel.setAttribute('position', {x: ((rowPos-1)*60.356), 
+                                                                   y: (-(((rowPos-1)*50)/2)+(50*panel)), 
+                                                                   z: -(rotDist*rowPos)});
+                                actPanel.setAttribute('rotation', {x: 0, y: (rotValue*rowPos), z: 0});
+                            }
+                            rotElem.appendChild(actPanel);
+                            PanelPos += 50;
+                        }
+                        actRotation += 45;
+                    }
+                    if (row % 2 != 0) {
+                        PanelCount += 1;
+                        rowPos += 1;
+                    }
+                }
+            </script>
+        </a-scene>
+    </body>
+</html>
